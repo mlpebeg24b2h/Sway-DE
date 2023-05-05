@@ -9,7 +9,7 @@
         - name: Arch | Creating directories...
           ansible.builtin.file:
             owner: "{{ ansible_user_id }}"
-            group: "{{ ansible_user_id }}"
+            group: "{{ group_user_id }}"
             mode: "0750"
             path: "{{ item }}"
             state: directory
