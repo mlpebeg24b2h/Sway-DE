@@ -209,7 +209,7 @@
         - name: Test Env | Creating directories...
           ansible.builtin.file:
             owner: "{{ ansible_user_id }}"
-            group: "{{ ansible_user_id }}"
+            group: "{{ group_user_id }}"
             mode: 0750
             path: "{{ item }}"
             state: directory
@@ -229,7 +229,7 @@
     - name: Common | Creating directories...
       ansible.builtin.file:
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0750
         path: "{{ item }}"
         state: directory
@@ -258,7 +258,7 @@
         content: ""
         dest: "{{ ansible_user_dir }}/.config/wget/wgetrc"
         force: false
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         owner: "{{ ansible_user_id }}"
         mode: 0640
 
@@ -272,7 +272,7 @@
     - name: Common | Creating shell script symlinks part1
       ansible.builtin.file:
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0750
         src: "{{ item.path }}"
         dest: "{{ BIN_DIR }}/sway/{{ item.path | basename }}"
@@ -282,7 +282,7 @@
     - name: Common | Creating shell script symlinks part2
       ansible.builtin.file:
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0750
         src: "{{ item }}"
         dest: "{{ BIN_DIR }}/sway/{{ item | basename }}"
@@ -306,7 +306,7 @@
     - name: Common | Templating custom bashrc...
       ansible.builtin.template:
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0640
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
@@ -330,7 +330,7 @@
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0640
       with_items:
         - {
@@ -375,7 +375,7 @@
     - name: Common | Creating wal template symlinks...
       ansible.builtin.file:
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: "{{ item.mode }}"
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
@@ -399,7 +399,7 @@
     - name: Common | Creating config symlinks...
       ansible.builtin.file:
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: "{{ item.mode }}"
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
@@ -470,7 +470,7 @@
     - name: Common | Extending user .bashrc...
       ansible.builtin.blockinfile:
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0640
         dest: "{{ ansible_user_dir }}/.bashrc"
         block: |
@@ -534,7 +534,7 @@
         option: "{{ item.option }}"
         value: "{{ item.value }}"
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         no_extra_spaces: true
         mode: 0640
       with_items:
@@ -548,7 +548,7 @@
         option: "{{ item.option }}"
         value: "{{ item.value }}"
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         no_extra_spaces: true
         mode: 0640
       with_items:
@@ -605,7 +605,7 @@
         insertafter: EOF
         create: true
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0640
 
     - name: Common | Configuring {{ ansible_user_dir }}/.config/environment.d/sway.conf
@@ -649,7 +649,7 @@
         insertafter: EOF
         create: true
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0640
 
     - name: Common | Configuring {{ ansible_user_dir }}/.profile
@@ -662,7 +662,7 @@
         insertafter: EOF
         create: true
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0640
 
     - name: Common | Configuring {{ ansible_user_dir }}/.config/starship.toml
@@ -672,7 +672,7 @@
         option: "{{ item.option }}"
         value: "{{ item.value }}"
         owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
+        group: "{{ group_user_id }}"
         mode: 0640
       with_items:
         - "{{ STARSHIP_OPTIONS }}"
